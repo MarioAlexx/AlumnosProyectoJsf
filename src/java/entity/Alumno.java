@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,6 +25,7 @@ import javax.persistence.Table;
 @Table(name = "alumno")
 @NamedQueries({
     @NamedQuery(name = "Alumno.findAll", query = "SELECT a FROM Alumno a")})
+@XmlRootElement
 public class Alumno implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,7 +42,7 @@ public class Alumno implements Serializable {
     private String apellidoMaterno;
     @Column(name = "marital")
     private String marital;
-
+    
     public Alumno() {
     }
 
