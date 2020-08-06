@@ -12,17 +12,17 @@
        <h:form>
 
             <p:commandButton value="Nuevo Lalala" actionListener="#{alumnoBean.nuevo(actionEvent)}" 
-                             oncomplete="PF('dlgNuevo').show();" update=":insertarAlumno"/>
+                             oncomplete="PF('dlgNuevo').show();" />
             
         </h:form>
 
         <br></br>
         <br></br>
 
-        <p:dialog id="dlgN" header="Registro de alumnos" widgetVar="dlgNuevo" showEffect="explode" hideEffect="explode"
+        <p:dialog id="dlg" header="Registro de alumnos" widgetVar="dlgNuevo" showEffect="explode" hideEffect="explode"
                   modal="true">                              
 
-            <h:form id="insertarAlumno">  
+            <h:form id="formInsertar">  
 
                 <p:panelGrid id="gridInsertarAlumnos" columns="2">
 
@@ -39,11 +39,9 @@
                     <p:inputText value="#{alumnoBean.alum.marital}"/> 
 
                     <p:commandButton value="Guardar" actionListener="#{alumnoBean.insertarAlumnoBean()}"
-                                     oncomplete="PF('dlgNuevo').hide();" update=":formMostrarAlumno" ajax="true"/>
+                                     oncomplete="PF('dlgNuevo').hide();" update=":formMostrarAlumno:tablaAlumnos" ajax="true"/>
 
-                    <p:commandButton value="Cancelar" actionListener="#{alumnoBean.cancelar()}"
-                                     update=":insertarAlumno" immediate="true"
-                                     onclick="PF('dlgNuevo').hide();"/>
+                  <p:commandButton value="Cancelar" onclick="PF('dlgNuevo').hide();" />
 
                 </p:panelGrid>
 
@@ -51,7 +49,7 @@
 
         </p:dialog>
         
-        <p:dialog id="dlg" header="Modificar" widgetVar="dlgModificar" showEffect="explode"
+        <p:dialog id="dlg2" header="Modificar" widgetVar="dlgModificar" showEffect="explode"
                   hideEffect="explode" modal="true">
 
             <h:form id="formModificar">            
@@ -71,7 +69,7 @@
                     <h:inputText value="#{alumnoBean.alum.marital}"/>
        
                     <p:commandButton value="Guardar" actionListener="#{alumnoBean.modificarAlumnoBean()}"
-                                     ajax="true" update=":formMostrarAlumno" oncomplete="PF('dlgModificar').hide();"/>
+                                     ajax="true" update=":formMostrarAlumno:tablaAlumnos" oncomplete="PF('dlgModificar').hide();"/>
                     <p:commandButton value="Cancelar" onclick="PF('dlgModificar').hide();" />
 
                 </h:panelGrid>
@@ -81,15 +79,15 @@
         </p:dialog>
 
 
-        <p:dialog id="dlg2" header="Eliminar" widgetVar="dlgEliminar" showEffect="explode"
+        <p:dialog id="dlg3" header="Eliminar" widgetVar="dlgEliminar" showEffect="explode"
                   hideEffect="explode" modal="true">
 
-            <h:form id="formEliminar" style="font-size: 12px;">    
-
+            <h:form id="formEliminar">  
+ <h:panelGrid columns="2">
                 <p:commandButton value="Si" actionListener="#{alumnoBean.eliminarAlumnoBean()}"
-                                 ajax="true" update=":formMostrarAlumno"  oncomplete="PF('dlgEliminar').hide();"/>
+                                 ajax="true" update=":formMostrarAlumno:tablaAlumnos" oncomplete="PF('dlgEliminar').hide();"/>
                 <p:commandButton value="No" onclick="PF('dlgEliminar').hide()"/>
-
+ </h:panelGrid>
             </h:form>
 
         </p:dialog>
